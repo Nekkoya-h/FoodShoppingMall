@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓名</label>
+                        <label class="col-sm-2 control-label">邮箱</label>
                         <div class="col-sm-10">
                             <input id="admin_user_dialog_name" type="text" class="form-control"/>
                         </div>

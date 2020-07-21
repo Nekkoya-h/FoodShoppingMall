@@ -107,46 +107,37 @@ public class AdminController {
 
     private Boolean doAdminEditGoods(HttpServletRequest req) {
         String img = req.getParameter("img");
-        String sql1 = "select * from goods where title = ?";
-        String[] p1 = {
-                req.getParameter("title")
-        };
-        GoodsBean result1 = SqlHelper.doObjQuery(sql1,p1,GoodsBean.class);
-        if(result1 == null) {
-            if (null == img || img.equals("")) {
-                //无图片更新
-                String sql = "update goods set title=?,detail=?,price=? where id=?";
-                String[] p = {
-                        req.getParameter("title"),
-                        req.getParameter("detail"),
-                        req.getParameter("price"),
-                        req.getParameter("id")
-                };
-                int result = SqlHelper.doUpdate(sql, p);
-                if (result > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
+        if (null == img || img.equals("")) {
+            //无图片更新
+            String sql = "update goods set title=?,detail=?,price=? where id=?";
+            String[] p = {
+                    req.getParameter("title"),
+                    req.getParameter("detail"),
+                    req.getParameter("price"),
+                    req.getParameter("id")
+            };
+            int result = SqlHelper.doUpdate(sql, p);
+            if (result > 0) {
+                return true;
             } else {
-                //更新图片
-                String sql = "update goods set title=?,detail=?,img=?,price=? where id=?";
-                String[] p = {
-                        req.getParameter("title"),
-                        req.getParameter("detail"),
-                        req.getParameter("img"),
-                        req.getParameter("price"),
-                        req.getParameter("id")
-                };
-                int result = SqlHelper.doUpdate(sql, p);
-                if (result > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return false;
             }
-        }else {
-            return false;
+        } else {
+            //更新图片
+            String sql = "update goods set title=?,detail=?,img=?,price=? where id=?";
+            String[] p = {
+                    req.getParameter("title"),
+                    req.getParameter("detail"),
+                    req.getParameter("img"),
+                    req.getParameter("price"),
+                    req.getParameter("id")
+            };
+            int result = SqlHelper.doUpdate(sql, p);
+            if (result > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
